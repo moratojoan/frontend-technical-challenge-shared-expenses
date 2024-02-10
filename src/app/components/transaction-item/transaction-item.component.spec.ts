@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransactionItemComponent } from './transaction-item.component';
 import { Transaction } from '../../domain/models/expense.model';
+import { formatDate, getCurrencySymbol } from '@angular/common';
 
 const transaction: Transaction = {
   id: 0,
@@ -35,8 +36,7 @@ describe('TransactionItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render: member name, description & price', () => {
-    fixture.detectChanges();
+  it('should render: member name, description, price & date', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('li').textContent).toContain(
       transaction.member.name
@@ -47,6 +47,11 @@ describe('TransactionItemComponent', () => {
     expect(compiled.querySelector('li').textContent).toContain(
       transaction.amount.value
     );
-    expect(compiled.querySelector('li').textContent).toContain('€');
+    expect(compiled.querySelector('li').textContent).toContain(
+      getCurrencySymbol(transaction.amount.currency, 'wide')
+    );
+    expect(compiled.querySelector('li').textContent).toContain(
+      formatDate(transaction.date, 'd MMMM, y, h:mm a', 'es')
+    );
   });
 });
