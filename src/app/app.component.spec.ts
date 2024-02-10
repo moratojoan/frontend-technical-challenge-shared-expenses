@@ -28,6 +28,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('li')?.length).toEqual(3);
+    expect(compiled.querySelectorAll('li').length).toEqual(3);
   });
 });

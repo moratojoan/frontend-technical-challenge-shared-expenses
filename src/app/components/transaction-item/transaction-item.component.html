@@ -1,0 +1,6 @@
+<li>
+  {{transaction.member.name}}
+  {{transaction.description}}
+  {{transaction.amount.value | currency: transaction.amount.currency : "symbol" : undefined : "es"}}
+  {{transaction.date | date: "short"}}
+</li>

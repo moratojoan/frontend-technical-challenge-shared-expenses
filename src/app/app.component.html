@@ -2,12 +2,7 @@
 <main>
   <ol>
     @for (transaction of transactions; track transaction.id) {
-      <li>
-        {{transaction.member.name}}
-        {{transaction.description}}
-        {{transaction.amount.value | currency: transaction.amount.currency : "symbol" : undefined : "es"}}
-        {{transaction.date | date: "short"}}
-      </li>
+      <transaction-item [transaction]="transaction"></transaction-item>
     }
   </ol>
 </main>
