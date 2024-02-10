@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import '@angular/common/locales/global/es';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -21,5 +22,12 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Gastos compartidos'
     );
+  });
+
+  it('should render a list of transactions', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('li')?.length).toEqual(3);
   });
 });

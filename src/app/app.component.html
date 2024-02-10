@@ -1,1 +1,13 @@
 <h1>Gastos compartidos</h1>
+<main>
+  <ol>
+    @for (transaction of transactions; track transaction.id) {
+      <li>
+        {{transaction.member.name}}
+        {{transaction.description}}
+        {{transaction.amount.value | currency: transaction.amount.currency : "symbol" : undefined : "es"}}
+        {{transaction.date | date: "short"}}
+      </li>
+    }
+  </ol>
+</main>
