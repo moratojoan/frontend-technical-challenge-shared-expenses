@@ -1,6 +1,16 @@
 <li>
-  {{transaction.member.name}}
-  {{transaction.description}}
-  {{transaction.amount.value | currency: transaction.amount.currency : "symbol" : undefined : "es"}}
-  {{transaction.date | date: "short"}}
+  <div>
+    <p class="description">
+      {{transaction.description}}
+    </p>
+    <p>
+      {{transaction.date | date: "d MMMM, y, h:mm a" : undefined : "es"}}
+    </p>
+    <p>
+      {{transaction.member.name}}
+    </p>
+  </div>
+  <p class="price">
+    {{transaction.amount.value | currency: transaction.amount.currency : "symbol" : undefined : "es"}}
+  </p>
 </li>

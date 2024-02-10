@@ -1,0 +1,30 @@
+li {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1.25rem 2rem;
+  font-size: 0.9rem;
+  color: rgb(var(--secondary-color));
+}
+
+li:hover {
+  background-color: rgb(var(--background-color));
+  opacity: 0.9;
+}
+
+li > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: initial;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(var(--blue-800));
+}
