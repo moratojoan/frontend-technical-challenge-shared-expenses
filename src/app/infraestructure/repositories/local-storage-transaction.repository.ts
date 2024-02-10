@@ -1,7 +1,6 @@
-import { Observable, map, of, take, tap } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Transaction } from '../../domain/models/expense.model';
 import { TransactionRepository } from '../../domain/repositories/transaction.repository';
-import { getAppInitialData } from '../../mocks/app-initial-data';
 import { Injectable } from '@angular/core';
 
 @Injectable({

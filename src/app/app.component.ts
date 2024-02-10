@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Transaction } from './domain/models/expense.model';
 import { TransactionItemComponent } from './components/transaction-item/transaction-item.component';
-import { TransactionRepository } from './domain/repositories/transaction.repository';
-import { getAppInitialData } from './mocks/app-initial-data';
+import { GetAllTransactionsUseCase } from './application/get-all-transactions-use-case';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +12,10 @@ import { getAppInitialData } from './mocks/app-initial-data';
 })
 export class AppComponent implements OnInit {
   transactions: Transaction[] = [];
-  transactionRepository = inject(TransactionRepository);
+  getAllTransactions = inject(GetAllTransactionsUseCase);
 
   ngOnInit(): void {
-    this.transactionRepository.getAll().subscribe({
+    this.getAllTransactions.execute().subscribe({
       next: (transactions) => {
         this.transactions = transactions;
       },
