@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-import { MemberRepository } from '../domain/repositories/member.repository';
 import { Injectable } from '@angular/core';
 import { Member } from '../domain/models/member.model';
 import { TransactionRepository } from '../domain/repositories/transaction.repository';
