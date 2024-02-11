@@ -1,0 +1,8 @@
+@if (transactions.length > 0) {
+  <ol>
+    @for (transaction of transactions; track transaction.id) {
+      <transaction-item [transaction]="transaction"></transaction-item>
+    }
+  </ol>
+}
+<button>Añadir transacción</button>

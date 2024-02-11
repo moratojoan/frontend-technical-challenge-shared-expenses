@@ -7,45 +7,42 @@ header {
   color: rgb(var(--white));
 }
 
-main {
+nav {
+  background-color: rgb(var(--blue-700));
+  color: rgb(var(--white));
+}
+
+ul {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   max-width: var(--max-width);
   margin: auto;
-  padding: 2rem 0;
-  gap: 2rem;
+  padding-bottom: 2px;
 }
 
-ol {
-  width: 100%;
-  background-color: rgb(var(--white));
-  box-shadow: var(--shadow-section);
-  border-radius: var(--border-radius-small);
+ul > li {
+  padding: 1rem 0;
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
-button {
-  position: fixed;
-  bottom: 60px;
+ul > li.active {
+  border-bottom: 3px solid rgb(var(--white));
+}
 
-  font-size: 1rem;
-  padding: 1.5rem 2.5rem;
-  border-radius: 3rem;
-  outline: none;
-  border: none;
-  box-shadow: var(--shadow-floating-button);
-  white-space: nowrap;
-  height: fit-content;
-  width: fit-content;
-
-  color: rgb(var(--white));
+ul > li:hover {
   background-color: rgb(var(--blue-600));
 }
-button:hover {
-  background-color: rgb(var(--blue-700));
+
+ul > li:active {
+  background-color: rgb(var(--blue-500));
 }
 
-button:active {
-  background-color: rgb(var(--blue-800));
-  box-shadow: none;
+main {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 2rem 0;
 }

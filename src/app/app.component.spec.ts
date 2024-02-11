@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import '@angular/common/locales/global/es';
 import { TransactionRepository } from './domain/repositories/transaction.repository';
-import { getAppInitialData } from './mocks/app-initial-data';
 import { of } from 'rxjs';
 
 describe('AppComponent', () => {
@@ -11,6 +10,8 @@ describe('AppComponent', () => {
       jasmine.createSpyObj<TransactionRepository>('TransactionRepository', [
         'getAll',
       ]);
+    TransactionRepositorySpy.getAll.and.returnValue(of([]));
+
     await TestBed.configureTestingModule({
       imports: [AppComponent],
       providers: [
@@ -20,9 +21,6 @@ describe('AppComponent', () => {
         },
       ],
     }).compileComponents();
-    TransactionRepositorySpy.getAll.and.returnValue(
-      of(getAppInitialData().transactions)
-    );
   });
 
   it('should create the app', () => {
@@ -38,12 +36,5 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Gastos compartidos'
     );
-  });
-
-  it('should render a list of transactions', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('li').length).toEqual(3);
   });
 });

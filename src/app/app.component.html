@@ -1,13 +1,26 @@
 <header>
   <h1>Gastos compartidos</h1>
 </header>
+<div>
+  <nav>
+    <ul>
+      <li
+        (click)="handleSelectSection('transactions')"
+        [class.active]="sectionSelected === 'transactions'">
+        Transactions
+      </li>
+      <li
+        (click)="handleSelectSection('members')"
+        [class.active]="sectionSelected === 'members'">
+        Members
+      </li>
+    </ul>
+  </nav>
+</div>
 <main>
-  @if (transactions.length > 0) {
-    <ol>
-      @for (transaction of transactions; track transaction.id) {
-        <transaction-item [transaction]="transaction"></transaction-item>
-      }
-    </ol>
+  @if(sectionSelected === "transactions") {
+    <transactions-section />
+  } @else if (sectionSelected === "members") {
+    <div>Members sections</div>
   }
-  <button>Añadir transacción</button>
 </main>

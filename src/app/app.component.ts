@@ -1,24 +1,19 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Transaction } from './domain/models/expense.model';
-import { TransactionItemComponent } from './components/transaction-item/transaction-item.component';
-import { GetAllTransactionsUseCase } from './application/get-all-transactions-use-case';
+import { Component } from '@angular/core';
+import { TransactionsSectionComponent } from './components/transactions-section/transactions-section.component';
+
+type AppSection = 'transactions' | 'members';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TransactionItemComponent],
+  imports: [TransactionsSectionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-  transactions: Transaction[] = [];
-  getAllTransactions = inject(GetAllTransactionsUseCase);
+export class AppComponent {
+  sectionSelected: AppSection = 'transactions';
 
-  ngOnInit(): void {
-    this.getAllTransactions.execute().subscribe({
-      next: (transactions) => {
-        this.transactions = transactions;
-      },
-    });
+  handleSelectSection(section: AppSection) {
+    this.sectionSelected = section;
   }
 }
