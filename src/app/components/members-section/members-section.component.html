@@ -1,0 +1,9 @@
+@if (members.length > 0) {
+  <ol>
+    @for (member of members; track member.id) {
+      <li>
+        <p>{{member.name}}</p>
+      </li>
+    }
+  </ol>
+}

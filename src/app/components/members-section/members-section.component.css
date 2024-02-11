@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ol {
+  width: 100%;
+  background-color: rgb(var(--white));
+  box-shadow: var(--shadow-section);
+  border-radius: var(--border-radius-small);
+}
+
+li {
+  padding: 1.25rem 2rem;
+  font-size: 1.2rem;
+}
+
+li:hover {
+  background-color: rgb(var(--background-color));
+  opacity: 0.9;
+}
