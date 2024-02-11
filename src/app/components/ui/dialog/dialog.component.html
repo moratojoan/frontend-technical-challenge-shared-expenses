@@ -1,0 +1,7 @@
+<dialog #customDialog (click)="closeModalOnClickOutside($event)">
+  <header>
+    <h1>{{title}}</h1>
+    <button (click)="closeModal()">X</button>
+  </header>
+  <ng-content />
+</dialog>

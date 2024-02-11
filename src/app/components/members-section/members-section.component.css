@@ -21,3 +21,37 @@ li:hover {
   background-color: rgb(var(--background-color));
   opacity: 0.9;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+form > button {
+  width: 100%;
+}
+
+form label {
+  font-size: 0.9rem;
+  color: rgb(var(--secondary-color));
+}
+
+form input {
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 1rem;
+  padding-bottom: 2px;
+}
+
+form input:is(:focus, :focus-visible) {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgb(var(--blue-600));
+}

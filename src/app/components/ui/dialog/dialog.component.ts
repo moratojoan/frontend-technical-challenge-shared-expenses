@@ -1,15 +1,14 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'custom-dialog',
   standalone: true,
   imports: [],
-  template: `<dialog #customDialog (click)="closeModalOnClickOutside($event)">
-    <ng-content></ng-content>
-  </dialog>`,
+  templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css',
 })
 export class DialogComponent {
+  @Input({ required: true }) title: string = '';
   @ViewChild('customDialog', { static: true })
   dialog!: ElementRef<HTMLDialogElement>;
 
