@@ -2,9 +2,12 @@
   <h1>Gastos compartidos</h1>
 </header>
 <main>
-  <ol>
-    @for (transaction of transactions; track transaction.id) {
-      <transaction-item [transaction]="transaction"></transaction-item>
-    }
-  </ol>
+  @if (transactions.length > 0) {
+    <ol>
+      @for (transaction of transactions; track transaction.id) {
+        <transaction-item [transaction]="transaction"></transaction-item>
+      }
+    </ol>
+  }
+  <button>Añadir transacción</button>
 </main>

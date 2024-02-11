@@ -8,13 +8,44 @@ header {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: var(--max-width);
   margin: auto;
   padding: 2rem 0;
+  gap: 2rem;
 }
 
 ol {
+  width: 100%;
   background-color: rgb(var(--white));
   box-shadow: var(--shadow-section);
   border-radius: var(--border-radius-small);
+}
+
+button {
+  position: fixed;
+  bottom: 60px;
+
+  font-size: 1rem;
+  padding: 1.5rem 2.5rem;
+  border-radius: 3rem;
+  outline: none;
+  border: none;
+  box-shadow: var(--shadow-floating-button);
+  white-space: nowrap;
+  height: fit-content;
+  width: fit-content;
+
+  color: rgb(var(--white));
+  background-color: rgb(var(--blue-600));
+}
+button:hover {
+  background-color: rgb(var(--blue-700));
+}
+
+button:active {
+  background-color: rgb(var(--blue-800));
+  box-shadow: none;
 }
