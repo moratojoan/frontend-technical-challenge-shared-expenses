@@ -7,4 +7,12 @@
     }
   </ol>
 }
-<button custom-button class="fixed-bottom">Añadir miembro</button>
+<button
+  custom-button
+  class="fixed-bottom"
+  (click)="showAddMemberDialog()">
+  Añadir miembro
+</button>
+<dialog #addMemberDialog (click)="closeModal($event)">
+  modal content
+</dialog>

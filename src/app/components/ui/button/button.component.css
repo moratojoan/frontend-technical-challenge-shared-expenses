@@ -4,7 +4,7 @@
   border-radius: 3rem;
   outline: none;
   border: none;
-  box-shadow: var(--shadow-floating-button);
+  box-shadow: var(--shadow-floating);
   white-space: nowrap;
   height: fit-content;
   width: fit-content;
