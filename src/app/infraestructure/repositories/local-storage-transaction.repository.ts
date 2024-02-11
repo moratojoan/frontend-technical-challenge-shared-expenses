@@ -23,7 +23,7 @@ export class LocalStorageTransactionRepository
     );
   }
 
-  getAllTransactions(): Transaction[] {
+  private getAllTransactions(): Transaction[] {
     const transactions: Transaction[] = JSON.parse(
       localStorage.getItem(this.storageKey) ?? '[]'
     );
@@ -33,5 +33,17 @@ export class LocalStorageTransactionRepository
   getAll(): Observable<Transaction[]> {
     const transactions = this.getAllTransactions();
     return of(transactions);
+  }
+
+  set(transaction: Omit<Transaction, 'id'>): Observable<Transaction> {
+    const transactions = this.getAllTransactions();
+    const newTransactionId = transactions.length + 1;
+    const newTransaction: Transaction = {
+      id: newTransactionId,
+      ...transaction,
+    };
+    const newTransactions: Transaction[] = [...transactions, newTransaction];
+    localStorage.setItem(this.storageKey, JSON.stringify(newTransactions));
+    return of(newTransaction);
   }
 }

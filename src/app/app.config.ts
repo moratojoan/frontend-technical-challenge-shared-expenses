@@ -10,6 +10,7 @@ import { MemberRepository } from './domain/repositories/member.repository';
 import { LocalStorageTransactionRepository } from './infraestructure/repositories/local-storage-transaction.repository';
 import { LocalStorageMemberRepository } from './infraestructure/repositories/local-storage-member.repository';
 import { GetBalanceUseCase } from './application/get-balance-use-case';
+import { SetTransactionUseCase } from './application/set-transaction-use-case';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: SetMemberUseCase,
       useClass: SetMemberUseCase,
+    },
+    {
+      provide: SetTransactionUseCase,
+      useClass: SetTransactionUseCase,
     },
     {
       provide: GetBalanceUseCase,

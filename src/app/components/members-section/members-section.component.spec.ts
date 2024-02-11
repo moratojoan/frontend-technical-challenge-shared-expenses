@@ -12,6 +12,12 @@ describe('MembersSectionComponent', () => {
   let MemberRepositorySpy: jasmine.SpyObj<MemberRepository>;
 
   beforeEach(async () => {
+    MemberRepositorySpy = jasmine.createSpyObj<MemberRepository>(
+      'MemberRepository',
+      ['getAll', 'set']
+    );
+    MemberRepositorySpy.getAll.and.returnValue(of(getAppInitialData().members));
+
     const TransactionRepositorySpy =
       jasmine.createSpyObj<TransactionRepository>('TransactionRepository', [
         'getAll',
@@ -19,11 +25,6 @@ describe('MembersSectionComponent', () => {
     TransactionRepositorySpy.getAll.and.returnValue(
       of(getAppInitialData().transactions)
     );
-    MemberRepositorySpy = jasmine.createSpyObj<MemberRepository>(
-      'MemberRepository',
-      ['getAll', 'set']
-    );
-    MemberRepositorySpy.getAll.and.returnValue(of(getAppInitialData().members));
 
     await TestBed.configureTestingModule({
       imports: [MembersSectionComponent],

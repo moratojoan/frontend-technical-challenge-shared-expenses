@@ -3,18 +3,28 @@ import { AppComponent } from './app.component';
 import '@angular/common/locales/global/es';
 import { TransactionRepository } from './domain/repositories/transaction.repository';
 import { of } from 'rxjs';
+import { MemberRepository } from './domain/repositories/member.repository';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
+    const MemberRepositorySpy = jasmine.createSpyObj<MemberRepository>(
+      'MemberRepository',
+      ['getAll', 'set']
+    );
     const TransactionRepositorySpy =
       jasmine.createSpyObj<TransactionRepository>('TransactionRepository', [
         'getAll',
       ]);
     TransactionRepositorySpy.getAll.and.returnValue(of([]));
+    MemberRepositorySpy.getAll.and.returnValue(of([]));
 
     await TestBed.configureTestingModule({
       imports: [AppComponent],
       providers: [
+        {
+          provide: MemberRepository,
+          useValue: MemberRepositorySpy,
+        },
         {
           provide: TransactionRepository,
           useValue: TransactionRepositorySpy,
