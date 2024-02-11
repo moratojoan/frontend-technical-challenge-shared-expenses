@@ -1,4 +1,4 @@
-import { Transaction } from '../domain/models/expense.model';
+import { Transaction } from '../domain/models/transaction.model';
 import { Member } from '../domain/models/member.model';
 
 type AppInitialData = {

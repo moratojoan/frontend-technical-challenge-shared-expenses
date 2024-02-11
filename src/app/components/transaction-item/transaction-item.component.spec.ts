@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransactionItemComponent } from './transaction-item.component';
-import { Transaction } from '../../domain/models/expense.model';
+import { Transaction } from '../../domain/models/transaction.model';
 import { formatDate, getCurrencySymbol } from '@angular/common';
 
 const transaction: Transaction = {
