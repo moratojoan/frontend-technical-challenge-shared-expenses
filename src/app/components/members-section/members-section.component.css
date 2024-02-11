@@ -12,16 +12,6 @@ ol {
   border-radius: var(--border-radius-small);
 }
 
-li {
-  padding: 1.25rem 2rem;
-  font-size: 1.2rem;
-}
-
-li:hover {
-  background-color: rgb(var(--background-color));
-  opacity: 0.9;
-}
-
 form {
   display: flex;
   flex-direction: column;

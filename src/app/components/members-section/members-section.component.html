@@ -1,9 +1,7 @@
 @if (membersBalance.length > 0) {
   <ol>
     @for (memberBalance of membersBalance; track memberBalance.member.id) {
-      <li>
-        <p>{{memberBalance.member.name}}</p>
-      </li>
+      <member-item [memberBalance]="memberBalance" />
     }
   </ol>
 }

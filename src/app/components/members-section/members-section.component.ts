@@ -10,11 +10,17 @@ import {
 import { SetMemberUseCase } from '../../application/set-member-use-case';
 import { GetBalanceUseCase } from '../../application/get-all-balance-use-case';
 import { Balance } from '../../domain/models/balance.model';
+import { MemberItemComponent } from '../member-item/member-item.component';
 
 @Component({
   selector: 'members-section',
   standalone: true,
-  imports: [ButtonComponent, DialogComponent, ReactiveFormsModule],
+  imports: [
+    MemberItemComponent,
+    ButtonComponent,
+    DialogComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './members-section.component.html',
   styleUrl: './members-section.component.css',
 })

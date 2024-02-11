@@ -1,0 +1,12 @@
+<li>
+  <div>
+    <p class="name">{{memberBalance.member.name}}</p>
+    <p>Total: {{memberBalance.totalTransactions.value | currency: memberBalance.totalTransactions.currency : "symbol" : undefined : "es"}}</p>
+  </div>
+  <p
+    class="balance"
+    [class.positive]="memberBalance.balance.value>=0"
+    [class.negative]="memberBalance.balance.value<0">
+    {{memberBalance.balance.value | currency: memberBalance.balance.currency : "symbol" : undefined : "es"}}
+  </p>
+</li>
