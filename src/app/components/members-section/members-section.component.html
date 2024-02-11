@@ -10,9 +10,9 @@
 <button
   custom-button
   class="fixed-bottom"
-  (click)="showAddMemberDialog()">
+  (click)="handleClickAddMember()">
   Añadir miembro
 </button>
-<dialog #addMemberDialog (click)="closeModal($event)">
+<custom-dialog>
   modal content
-</dialog>
+</custom-dialog>
