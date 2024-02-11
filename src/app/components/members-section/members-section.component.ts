@@ -39,10 +39,6 @@ export class MembersSectionComponent implements OnInit {
     this.dialog.showModal();
   }
 
-  get name() {
-    return this.addMemberForm.get('name');
-  }
-
   submitMember() {
     if (this.addMemberForm.valid) {
       this.setMember
