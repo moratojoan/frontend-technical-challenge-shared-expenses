@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
-import { Member } from '../../domain/models/member.model';
-import { GetAllMembersUseCase } from '../../application/get-all-members-use-case';
 import { ButtonComponent } from '../ui/button/button.component';
 import { DialogComponent } from '../ui/dialog/dialog.component';
 import {
@@ -10,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { SetMemberUseCase } from '../../application/set-member-use-case';
+import { GetBalanceUseCase } from '../../application/get-all-balance-use-case';
+import { Balance } from '../../domain/models/balance.model';
 
 @Component({
   selector: 'members-section',
@@ -19,20 +19,31 @@ import { SetMemberUseCase } from '../../application/set-member-use-case';
   styleUrl: './members-section.component.css',
 })
 export class MembersSectionComponent implements OnInit {
-  members: Member[] = [];
-  getAllMembers = inject(GetAllMembersUseCase);
+  getBalance = inject(GetBalanceUseCase);
   setMember = inject(SetMemberUseCase);
+
+  membersBalance: Balance['membersBalance'] = [];
+  totalTransactions: Balance['totalTransactions'] = {
+    value: 0,
+    currency: 'EUR',
+  };
+
   @ViewChild(DialogComponent) dialog!: DialogComponent;
   addMemberForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
   });
 
-  ngOnInit(): void {
-    this.getAllMembers.execute().subscribe({
-      next: (members) => {
-        this.members = members;
+  loadBalance() {
+    this.getBalance.execute().subscribe({
+      next: (balance) => {
+        this.membersBalance = balance.membersBalance;
+        this.totalTransactions = balance.totalTransactions;
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.loadBalance();
   }
 
   handleClickAddMember() {
@@ -43,8 +54,8 @@ export class MembersSectionComponent implements OnInit {
     if (this.addMemberForm.valid) {
       this.setMember
         .execute(this.addMemberForm.value.name ?? '')
-        .subscribe((member) => {
-          this.members = [...this.members, member];
+        .subscribe(() => {
+          this.loadBalance();
           this.dialog.closeModal();
         });
     }

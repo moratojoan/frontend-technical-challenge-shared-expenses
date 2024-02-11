@@ -4,6 +4,7 @@ import { MembersSectionComponent } from './members-section.component';
 import { getAppInitialData } from '../../mocks/app-initial-data';
 import { MemberRepository } from '../../domain/repositories/member.repository';
 import { of } from 'rxjs';
+import { TransactionRepository } from '../../domain/repositories/transaction.repository';
 
 describe('MembersSectionComponent', () => {
   let component: MembersSectionComponent;
@@ -11,6 +12,13 @@ describe('MembersSectionComponent', () => {
   let MemberRepositorySpy: jasmine.SpyObj<MemberRepository>;
 
   beforeEach(async () => {
+    const TransactionRepositorySpy =
+      jasmine.createSpyObj<TransactionRepository>('TransactionRepository', [
+        'getAll',
+      ]);
+    TransactionRepositorySpy.getAll.and.returnValue(
+      of(getAppInitialData().transactions)
+    );
     MemberRepositorySpy = jasmine.createSpyObj<MemberRepository>(
       'MemberRepository',
       ['getAll', 'set']
@@ -23,6 +31,10 @@ describe('MembersSectionComponent', () => {
         {
           provide: MemberRepository,
           useValue: MemberRepositorySpy,
+        },
+        {
+          provide: TransactionRepository,
+          useValue: TransactionRepositorySpy,
         },
       ],
     }).compileComponents();
@@ -63,8 +75,14 @@ describe('MembersSectionComponent', () => {
   });
 
   it('should set a new member', async () => {
-    const newName = 'Texto de prueba';
-    MemberRepositorySpy.set.and.returnValue(of({ id: 4, name: newName }));
+    const newMember = {
+      id: 4,
+      name: 'Texto de prueba',
+    };
+    MemberRepositorySpy.set.and.returnValue(of(newMember));
+    MemberRepositorySpy.getAll.and.returnValue(
+      of([...getAppInitialData().members, newMember])
+    );
 
     const compiled = fixture.nativeElement as HTMLElement;
     const button = compiled.querySelector('button') as HTMLButtonElement;
@@ -76,16 +94,16 @@ describe('MembersSectionComponent', () => {
       "button[type='submit']"
     ) as HTMLButtonElement;
 
-    input.value = newName;
+    input.value = newMember.name;
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
     submitButton.click();
-    await fixture.whenStable();
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(dialog.hasAttribute('open')).toBeFalsy();
     const item =
       compiled.querySelectorAll('li')[getAppInitialData().members.length];
-    expect(item.textContent).toContain(newName);
+    expect(item.textContent).toContain(newMember.name);
   });
 });
