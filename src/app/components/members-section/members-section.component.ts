@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Member } from '../../domain/models/member.model';
 import { GetAllMembersUseCase } from '../../application/get-all-members-use-case';
+import { ButtonComponent } from '../ui/button/button.component';
 
 @Component({
   selector: 'members-section',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './members-section.component.html',
   styleUrl: './members-section.component.css',
 })

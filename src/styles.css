@@ -50,3 +50,8 @@ ul {
 button {
   cursor: pointer;
 }
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 60px;
+}
