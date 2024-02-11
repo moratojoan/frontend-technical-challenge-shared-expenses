@@ -3,7 +3,12 @@ import { Member } from '../../domain/models/member.model';
 import { GetAllMembersUseCase } from '../../application/get-all-members-use-case';
 import { ButtonComponent } from '../ui/button/button.component';
 import { DialogComponent } from '../ui/dialog/dialog.component';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { SetMemberUseCase } from '../../application/set-member-use-case';
 
 @Component({
@@ -18,8 +23,8 @@ export class MembersSectionComponent implements OnInit {
   getAllMembers = inject(GetAllMembersUseCase);
   setMember = inject(SetMemberUseCase);
   @ViewChild(DialogComponent) dialog!: DialogComponent;
-  applyForm = new FormGroup({
-    name: new FormControl(''),
+  addMemberForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {
@@ -34,12 +39,18 @@ export class MembersSectionComponent implements OnInit {
     this.dialog.showModal();
   }
 
+  get name() {
+    return this.addMemberForm.get('name');
+  }
+
   submitMember() {
-    this.setMember
-      .execute(this.applyForm.value.name ?? '')
-      .subscribe((member) => {
-        this.members = [...this.members, member];
-        this.dialog.closeModal();
-      });
+    if (this.addMemberForm.valid) {
+      this.setMember
+        .execute(this.addMemberForm.value.name ?? '')
+        .subscribe((member) => {
+          this.members = [...this.members, member];
+          this.dialog.closeModal();
+        });
+    }
   }
 }

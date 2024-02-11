@@ -16,11 +16,17 @@
   Añadir miembro
 </button>
 <custom-dialog title="Nuevo miembro">
-  <form [formGroup]="applyForm" (submit)="submitMember()">
+  <form [formGroup]="addMemberForm" (submit)="submitMember()">
     <div>
       <label for="name">Nombre</label>
-      <input id="name" type="text" formControlName="name" placeholder="Escriba el nombre del miembro"/>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Escriba el nombre del miembro"
+        required
+      />
     </div>
-    <button custom-button type="submit">Guardar</button>
+    <button custom-button type="submit" [disabled]="!addMemberForm.valid">Guardar</button>
   </form>
 </custom-dialog>

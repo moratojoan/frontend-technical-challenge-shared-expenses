@@ -78,6 +78,7 @@ describe('MembersSectionComponent', () => {
 
     input.value = newName;
     input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
     submitButton.click();
     await fixture.whenStable();
     fixture.detectChanges();
