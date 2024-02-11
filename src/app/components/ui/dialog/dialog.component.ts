@@ -4,7 +4,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   selector: 'custom-dialog',
   standalone: true,
   imports: [],
-  template: `<dialog #customDialog (click)="closeModal($event)">
+  template: `<dialog #customDialog (click)="closeModalOnClickOutside($event)">
     <ng-content></ng-content>
   </dialog>`,
   styleUrl: './dialog.component.css',
@@ -17,7 +17,11 @@ export class DialogComponent {
     this.dialog.nativeElement.showModal();
   }
 
-  closeModal(e: MouseEvent) {
+  closeModal() {
+    this.dialog.nativeElement.close();
+  }
+
+  closeModalOnClickOutside(e: MouseEvent) {
     const dialog = this.dialog.nativeElement;
     const dialogDimensions = dialog.getBoundingClientRect();
     if (

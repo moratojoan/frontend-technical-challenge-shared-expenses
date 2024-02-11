@@ -1,27 +1,26 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Member } from '../../domain/models/member.model';
 import { GetAllMembersUseCase } from '../../application/get-all-members-use-case';
 import { ButtonComponent } from '../ui/button/button.component';
 import { DialogComponent } from '../ui/dialog/dialog.component';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { SetMemberUseCase } from '../../application/set-member-use-case';
 
 @Component({
   selector: 'members-section',
   standalone: true,
-  imports: [ButtonComponent, DialogComponent],
+  imports: [ButtonComponent, DialogComponent, ReactiveFormsModule],
   templateUrl: './members-section.component.html',
   styleUrl: './members-section.component.css',
 })
 export class MembersSectionComponent implements OnInit {
   members: Member[] = [];
   getAllMembers = inject(GetAllMembersUseCase);
-  @ViewChild(DialogComponent)
-  dialog!: DialogComponent;
+  setMember = inject(SetMemberUseCase);
+  @ViewChild(DialogComponent) dialog!: DialogComponent;
+  applyForm = new FormGroup({
+    name: new FormControl(''),
+  });
 
   ngOnInit(): void {
     this.getAllMembers.execute().subscribe({
@@ -33,5 +32,14 @@ export class MembersSectionComponent implements OnInit {
 
   handleClickAddMember() {
     this.dialog.showModal();
+  }
+
+  submitMember() {
+    this.setMember
+      .execute(this.applyForm.value.name ?? '')
+      .subscribe((member) => {
+        this.members = [...this.members, member];
+        this.dialog.closeModal();
+      });
   }
 }

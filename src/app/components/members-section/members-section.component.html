@@ -14,5 +14,9 @@
   Añadir miembro
 </button>
 <custom-dialog>
-  modal content
+  <form [formGroup]="applyForm" (submit)="submitMember()">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" placeholder="Escriba el nombre del miembro"/>
+    <button type="submit">Guardar</button>
+  </form>
 </custom-dialog>
