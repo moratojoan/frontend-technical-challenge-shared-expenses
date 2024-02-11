@@ -1,9 +1,11 @@
 import { Transaction } from '../domain/models/transaction.model';
 import { Member } from '../domain/models/member.model';
+import { Balance } from '../domain/models/balance.model';
 
 type AppInitialData = {
   members: Member[];
   transactions: Transaction[];
+  balance: Balance;
 };
 export function getAppInitialData(): AppInitialData {
   const members = [
@@ -54,5 +56,55 @@ export function getAppInitialData(): AppInitialData {
         date: new Date('2024-01-22T10:23:00'),
       },
     ],
+    balance: {
+      totalTransactions: {
+        value: 305,
+        currency: 'EUR',
+      },
+      membersBalance: [
+        {
+          member: {
+            id: 1,
+            name: 'Joan Morató',
+          },
+          totalTransactions: {
+            value: 125,
+            currency: 'EUR',
+          },
+          balance: {
+            value: 23.33333333333333,
+            currency: 'EUR',
+          },
+        },
+        {
+          member: {
+            id: 2,
+            name: 'Francisco Buyo',
+          },
+          totalTransactions: {
+            value: 180,
+            currency: 'EUR',
+          },
+          balance: {
+            value: 78.33333333333333,
+            currency: 'EUR',
+          },
+        },
+        {
+          member: {
+            id: 3,
+            name: 'Alfonso Pérez',
+          },
+          totalTransactions: {
+            value: 0,
+            currency: 'EUR',
+          },
+          balance: {
+            value: -101.66666666666667,
+            currency: 'EUR',
+          },
+        },
+      ],
+    },
   };
 }
