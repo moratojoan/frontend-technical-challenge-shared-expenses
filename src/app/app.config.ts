@@ -9,7 +9,7 @@ import { TransactionRepository } from './domain/repositories/transaction.reposit
 import { MemberRepository } from './domain/repositories/member.repository';
 import { LocalStorageTransactionRepository } from './infraestructure/repositories/local-storage-transaction.repository';
 import { LocalStorageMemberRepository } from './infraestructure/repositories/local-storage-member.repository';
-import { GetBalanceUseCase } from './application/get-all-balance-use-case';
+import { GetBalanceUseCase } from './application/get-balance-use-case';
 
 export const appConfig: ApplicationConfig = {
   providers: [

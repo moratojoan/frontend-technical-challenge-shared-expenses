@@ -32,6 +32,7 @@ export class GetBalanceUseCase {
       (transaction) => transaction.member.id === member.id
     );
   }
+
   execute(): Observable<Balance> {
     const transactions = this.transactionRepository.getAll();
     const members = this.memberRepository.getAll();

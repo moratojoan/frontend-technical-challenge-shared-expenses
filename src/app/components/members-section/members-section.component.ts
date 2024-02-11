@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SetMemberUseCase } from '../../application/set-member-use-case';
-import { GetBalanceUseCase } from '../../application/get-all-balance-use-case';
+import { GetBalanceUseCase } from '../../application/get-balance-use-case';
 import { Balance } from '../../domain/models/balance.model';
 import { MemberItemComponent } from '../member-item/member-item.component';
 
