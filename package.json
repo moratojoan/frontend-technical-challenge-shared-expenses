@@ -1,5 +1,5 @@
 {
-  "name": "shared-expenses",
+  "name": "frontend-technical-challenge-shared-expenses",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

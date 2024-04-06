@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "shared-expenses": {
+    "frontend-technical-challenge-shared-expenses": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/shared-expenses",
+            "outputPath": "dist/frontend-technical-challenge-shared-expenses",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -57,10 +57,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "shared-expenses:build:production"
+              "buildTarget": "frontend-technical-challenge-shared-expenses:build:production"
             },
             "development": {
-              "buildTarget": "shared-expenses:build:development"
+              "buildTarget": "frontend-technical-challenge-shared-expenses:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "shared-expenses:build"
+            "buildTarget": "frontend-technical-challenge-shared-expenses:build"
           }
         },
         "test": {
